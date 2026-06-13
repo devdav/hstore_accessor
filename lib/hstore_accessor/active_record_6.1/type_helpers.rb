@@ -18,7 +18,7 @@ module HstoreAccessor
         sql_type_metadata = ActiveRecord::ConnectionAdapters::SqlTypeMetadata.new(
           sql_type: cast_type.type.to_s, type: cast_type.type, limit: cast_type.limit,
           precision: cast_type.precision, scale: cast_type.scale)
-        ActiveRecord::ConnectionAdapters::Column.new(attribute.to_s, sql_type_metadata)
+        ActiveRecord::ConnectionAdapters::Column.new(attribute.to_s, TYPES[data_type], nil, sql_type_metadata)
       end
 
       def cast(type, value)
